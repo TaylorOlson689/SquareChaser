@@ -22,6 +22,7 @@ namespace SquareChaser
         Rectangle ball1 = new Rectangle(295, 195, 10, 10);
         Rectangle ball2 = new Rectangle(315, 195, 10, 10);
 
+        int playerTurn = 1;
         int player1Score = 0;
         int player2Score = 0;
         int player1Speed = 6;
@@ -33,7 +34,9 @@ namespace SquareChaser
         SolidBrush whiteBrush = new SolidBrush(Color.White);
         SolidBrush yellowBrush = new SolidBrush(Color.Yellow);
 
-        
+        SoundPlayer collisionSound = new SoundPlayer(Properties.Resources.CollisionSound);
+
+        Random randGen = new Random();
 
         public Form1()
         {
@@ -52,10 +55,10 @@ namespace SquareChaser
                     sDown = false;
                     break;
                 case Keys.A:
-                    wDown = false;
+                    aDown = false;
                     break;
                 case Keys.D:
-                    sDown = false;
+                    dDown = false;
                     break;
                 case Keys.Up:
                     upArrowDown = false;
@@ -64,10 +67,10 @@ namespace SquareChaser
                     downArrowDown = false;
                     break;
                 case Keys.Left:
-                    wDown = false;
+                    leftArrowDown = false;
                     break;
                 case Keys.Right:
-                    sDown = false;
+                    rightArrowDown = false;
                     break;
             }
         }
@@ -83,10 +86,10 @@ namespace SquareChaser
                     sDown = true;
                     break;
                 case Keys.A:
-                    wDown = true;
+                    aDown = true;
                     break;
                 case Keys.D:
-                    sDown = true;
+                    dDown = true;
                     break;
                 case Keys.Up:
                     upArrowDown = true;
@@ -95,10 +98,10 @@ namespace SquareChaser
                     downArrowDown = true;
                     break;
                 case Keys.Left:
-                    wDown = true;
+                    leftArrowDown = true;
                     break;
                 case Keys.Right:
-                    sDown = true;
+                    rightArrowDown = true;
                     break;
             }
         }
@@ -149,34 +152,35 @@ namespace SquareChaser
 
             // create code that checks if player 1 collides with ball1 and if it does
             // move ball1 to a different location.
-            if (player1.IntersectsWith(ball1))
+            if (player1.IntersectsWith(ball1)) //white ball
             {
-                SoundPlayer CollisionSound = new SoundPlayer(Properties.Resources.CollisionSound);
-                player1Speed *= +1;
-                //ball1.X = ;
-                //ball1.Y = ; 
+                player1Score++;
+                collisionSound.Play();
+
+                ball1.X = randGen.Next(0, this.Width);
+                ball1.Y = 100;
+
             }
-            if (player1.IntersectsWith(ball2))
-            {
-                SoundPlayer CollisionSound = new SoundPlayer(Properties.Resources.CollisionSound);
-                player1Speed *= -1;
-                //ball2.X = ;
-                //ball2.Y = ;
-            }
-            if (player2.IntersectsWith(ball1))
-            {
-                SoundPlayer CollisionSound = new SoundPlayer(Properties.Resources.CollisionSound);
-                player2Speed *= +1;
-                //ball1.X = ;
-                //ball1.Y = ;
-            }
-            if (player2.IntersectsWith(ball2))
-            {
-                SoundPlayer CollisionSound = new SoundPlayer(Properties.Resources.CollisionSound);
-                player2Speed *= -1;
-                //ball2.X = ;
-                //ball2.Y = ;
-            }
+            //if (player1.IntersectsWith(ball2))
+            //{
+            //    SoundPlayer CollisionSound = new SoundPlayer(Properties.Resources.CollisionSound);
+            //    player1Speed *= -1;
+            //    Rectangle ball2 = new Rectangle(player2.X, player1.Y, 8, 12);
+            //}
+            //if (player2.IntersectsWith(ball1))
+            //{
+            //    SoundPlayer CollisionSound = new SoundPlayer(Properties.Resources.CollisionSound);
+            //    player2Speed *= +1;
+            //    Rectangle ball1 = new Rectangle(player2.X, player1.Y, 8, 12);
+            //}
+            //if (player2.IntersectsWith(ball2))
+            //{
+            //    SoundPlayer CollisionSound = new SoundPlayer(Properties.Resources.CollisionSound);
+            //    player2Speed *= -1;
+            //    Rectangle ball2 = new Rectangle(player2.X, player1.Y, 8, 12);
+            //}
+
+           
 
             //    //check for game over
             //    if (player1Score == 3)
