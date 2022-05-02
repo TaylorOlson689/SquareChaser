@@ -19,10 +19,9 @@ namespace SquareChaser
 
         Rectangle player1 = new Rectangle(10, 210, 10, 10);
         Rectangle player2 = new Rectangle(10, 130, 10, 10);
-        Rectangle ball1 = new Rectangle(295, 195, 10, 10);
+        Rectangle ball1 = new Rectangle(295, 125, 10, 10);
         Rectangle ball2 = new Rectangle(315, 195, 10, 10);
 
-        int playerTurn = 1;
         int player1Score = 0;
         int player2Score = 0;
         int player1Speed = 6;
@@ -154,50 +153,60 @@ namespace SquareChaser
             // move ball1 to a different location.
             if (player1.IntersectsWith(ball1)) //white ball
             {
-                player1Score++;
+                player1Score += 1;
+                p1ScoreLabel.Text = "P1: {player1Score}";
                 collisionSound.Play();
 
                 ball1.X = randGen.Next(0, this.Width);
-                ball1.Y = 100;
+                ball1.Y = randGen.Next(0, this.Width);
 
             }
-            //if (player1.IntersectsWith(ball2))
-            //{
-            //    SoundPlayer CollisionSound = new SoundPlayer(Properties.Resources.CollisionSound);
-            //    player1Speed *= -1;
-            //    Rectangle ball2 = new Rectangle(player2.X, player1.Y, 8, 12);
-            //}
-            //if (player2.IntersectsWith(ball1))
-            //{
-            //    SoundPlayer CollisionSound = new SoundPlayer(Properties.Resources.CollisionSound);
-            //    player2Speed *= +1;
-            //    Rectangle ball1 = new Rectangle(player2.X, player1.Y, 8, 12);
-            //}
-            //if (player2.IntersectsWith(ball2))
-            //{
-            //    SoundPlayer CollisionSound = new SoundPlayer(Properties.Resources.CollisionSound);
-            //    player2Speed *= -1;
-            //    Rectangle ball2 = new Rectangle(player2.X, player1.Y, 8, 12);
-            //}
+            if (player1.IntersectsWith(ball2))
+            {
+                player1Score -= 1;
+                p1ScoreLabel.Text = "P1: {player1Score}";
+                collisionSound.Play();
 
-           
+                ball2.X = randGen.Next(0, this.Width);
+                ball2.Y = randGen.Next(0, this.Width);
+            }
+            if (player2.IntersectsWith(ball1))
+            {
+                player2Score += 1;
+                p2ScoreLabel.Text = "P2: {player2Score}";
+                collisionSound.Play();
 
-            //    //check for game over
-            //    if (player1Score == 3)
-            //    {
-            //        gameTimer.Enabled = false;
-            //        winLabel.Visible = true;
-            //        winLabel.Text = "Player 1 Wins!!";
-            //    }
-            //    else if (player2Score == 3)
-            //    {
-            //        gameTimer.Enabled = false;
-            //        winLabel.Visible = true;
-            //        winLabel.Text = "Player 2 Wins!!";
-            //    }
-            //}
+                ball1.X = randGen.Next(0, this.Width);
+                ball1.Y = randGen.Next(0, this.Width);
+            }
+            if (player2.IntersectsWith(ball2))
+            {
+                player2Score -= 1;
+                p2ScoreLabel.Text = "P2: {player2Score}";
+                collisionSound.Play();
+
+                ball2.X = randGen.Next(0, this.Width);
+                ball2.Y = randGen.Next(0, this.Width);
+            }
+
+
+
+            //check for game over
+            if (player1Score == 5)
+            {
+                gameTimer.Enabled = false;
+                winLabel.Visible = true;
+                winLabel.Text = "Player 1 Wins!!";
+            }
+            else if (player2Score == 5)
+            {
+                gameTimer.Enabled = false;
+                winLabel.Visible = true;
+                winLabel.Text = "Player 2 Wins!!";
+            }
             Refresh();
         }
+            
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
