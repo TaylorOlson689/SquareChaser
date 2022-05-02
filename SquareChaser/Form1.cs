@@ -154,7 +154,7 @@ namespace SquareChaser
             if (player1.IntersectsWith(ball1)) //white ball
             {
                 player1Score += 1;
-                p1ScoreLabel.Text = "P1: {player1Score}";
+                p1ScoreLabel.Text = $"P1: {player1Score}";
                 collisionSound.Play();
 
                 ball1.X = randGen.Next(0, this.Width);
@@ -164,7 +164,7 @@ namespace SquareChaser
             if (player1.IntersectsWith(ball2))
             {
                 player1Score -= 1;
-                p1ScoreLabel.Text = "P1: {player1Score}";
+                p1ScoreLabel.Text = $"P1: {player1Score}";
                 collisionSound.Play();
 
                 ball2.X = randGen.Next(0, this.Width);
@@ -173,7 +173,7 @@ namespace SquareChaser
             if (player2.IntersectsWith(ball1))
             {
                 player2Score += 1;
-                p2ScoreLabel.Text = "P2: {player2Score}";
+                p2ScoreLabel.Text = $"P2: {player2Score}";
                 collisionSound.Play();
 
                 ball1.X = randGen.Next(0, this.Width);
@@ -182,7 +182,7 @@ namespace SquareChaser
             if (player2.IntersectsWith(ball2))
             {
                 player2Score -= 1;
-                p2ScoreLabel.Text = "P2: {player2Score}";
+                p2ScoreLabel.Text = $"P2: {player2Score}";
                 collisionSound.Play();
 
                 ball2.X = randGen.Next(0, this.Width);
