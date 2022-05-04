@@ -15,7 +15,7 @@ namespace SquareChaser
         bool upArrowDown = false;
         bool downArrowDown = false;
         bool leftArrowDown = false;
-        bool rightArrowDown = false;
+        bool rightArrowDown = false; 
 
         Rectangle player1 = new Rectangle(10, 210, 10, 10);
         Rectangle player2 = new Rectangle(10, 130, 10, 10);
