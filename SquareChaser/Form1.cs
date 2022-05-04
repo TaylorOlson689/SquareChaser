@@ -182,7 +182,7 @@ namespace SquareChaser
             if (player2.IntersectsWith(ball2))
             {
                 player2Score -= 1;
-                p2ScoreLabel.Text = $"P2: {player2Score}";
+                p2ScoreLabel.Text = $"P2: {player2Score }";
                 collisionSound.Play();
 
                 ball2.X = randGen.Next(0, this.Width);
